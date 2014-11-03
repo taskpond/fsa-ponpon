@@ -1,22 +1,24 @@
-// Basic Calculator Application
+var Hapi = require('hapi');
+var swig = require('swig');
 
-var stdio = require('stdio');
-var app = stdio.getopt({
-    'add': {key: 'a', description: 'Add'},
-    'minus': {key: 'm', description: 'Minus'},
-    'multiply': {key: 'x', description: 'Multiply'},
-    'divide': {key: 'd', description: 'Divide'}
+// Create a server with a host and port
+var server = new Hapi.createServer('localhost', 8000, { cors: true });
+
+// Export the server to be required elsewhere.
+module.exports = server;
+
+// Template Ending
+server.views({
+	path: './app/views',
+    engines: {
+        html: require('swig')
+    }
 });
 
-if(app.add) basicCal(app.args, '+');
+// Add the server routes
+server.route(require('./config/routes'));
 
-if(app.minus) basicCal(app.args, '-');
-
-if(app.multiply) basicCal(app.args, '*');
-
-if(app.divide) basicCal(app.args, '/');
-
-function basicCal(value, sign){
-	var math = require('mathjs');
-	return value === undefined ? "--help" : console.log('Result: ', math.eval(value.join(sign)));
-}
+// Start the server
+server.start(function () {
+    console.log('Server running at:', server.info.uri);
+});
