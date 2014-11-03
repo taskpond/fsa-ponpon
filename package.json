@@ -1,0 +1,21 @@
+{
+  "name": "fsa-assignments",
+  "version": "0.0.1",
+  "description": "\"The Full-Stack Academy\"",
+  "main": "index.js",
+  "dependencies": {
+    "mathjs": "^1.0.1",
+    "stdio": "^0.2.3"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/taskpond/fsa-assignments.git"
+  },
+  "author": "pichate.h@taskworld.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/taskpond/fsa-assignments/issues"
+  },
+  "homepage": "https://github.com/taskpond/fsa-assignments"
+}
