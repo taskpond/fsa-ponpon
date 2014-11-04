@@ -1,14 +1,49 @@
 {% extends '../layouts/application.html' %}
 
-{% block title %}{{title}}{% endblock %}
-
 {% block content %}
-	{{path}}
-	<ul class="menu">
-      <li><a href="/">Home</a></li>
-      <li><a href="/about">About</a></li>
-  </ul>
-  
-  <h2>Assignment: 2</h2>
-  <p>{{title}}</p>
+  <div class="wrapper">
+  	<h1>The Full-Stack Academy</h1>
+
+		<ul class="menu">
+	    <li><a href="/">Home</a></li>
+	    <li><a href="/about">About</a></li>
+		</ul>
+	    
+	  <h2>Assignment 3: jQuery</h2>
+	  <div class="content">
+	  	<form name="addCar" id="addCar">		  	
+		  	<label for="make">Make: </label>
+		  	<input type="text" name="make" placeholder="Manufacturer" required /> <br/><br/>
+
+		  	<label for="model">Model: </label>
+		  	<input type="text" name="model" placeholder="Model" required /> <br/><br/>
+
+		  	<label for="year">Year: </label>
+		  	<input type="number" name="year" placeholder="Year" required /><br/><br/>
+		  	<input type="submit" value="Add" />
+	  	</form>
+
+	  	<br /><br />
+		  <button class="fetchBtn">Fetch Demo data</button>
+
+	  	<div class="result">
+	  		<table class="table">
+			    <thead>
+			        <tr>
+			            <th>#</th>
+			            <th>Make</th>
+			            <th>Model</th>
+			            <th>Year</th>
+			        </tr>
+			    </thead>
+
+			    <tbody>
+			        <tr class="empty">
+			            <td colspan="4"><div>No Data</div></td>
+			        </tr>
+			    </tbody>
+			</table>
+	  	</div>
+	  </div>
+  </div>
 {% endblock %}
