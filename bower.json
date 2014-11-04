@@ -1,0 +1,26 @@
+{
+  "name": "fsa-ponpon",
+  "main": "index.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/taskpond/fsa-ponpon",
+  "authors": [
+    "codePONPON <codeponpon@gmail.com>"
+  ],
+  "description": "The Full-Stack Academy (Bower)",
+  "moduleType": [
+    "amd",
+    "es6",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1"
+  }
+}
