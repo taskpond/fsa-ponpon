@@ -1,0 +1,13 @@
+@media(max-width:767px) {
+  .intro-message {
+    padding-bottom: 15%;
+  }
+
+  .intro-message > h1 {
+    font-size: 3em;
+  }
+
+  .intro-divider {
+    width: 100%;
+  }
+}
