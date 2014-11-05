@@ -1,51 +1,40 @@
+function scrollDiiwaa(id){
+	$('html,body').animate({scrollTop: $("#"+id).offset().top}, "slow");		
+}
+
 $(document).ready(function(){
-	// Fetch sample data
-	$(".fetchBtn").click(function(){
-		$.ajax({
-			type: "GET",
-			dataType: "JSON",
-			url: "./shared/data.json",
-			beforeSend: function(){
-				$(".table tr.empty td div").text("Loading Data");
-			}
-		})
-		.success(function(result){
-			$(".table tr.empty").remove();
-			// Clear data
-			if(result.data.length > 0) $(".table tbody").empty();
-			
-			$.each(result.data, function(index, data){
-				var $tr = $("<tr></tr>");
-				$tr.append("<td>"+(++index)+"</td>");
-				$tr.append("<td>"+data.make+"</td>");
-				$tr.append("<td>"+data.model+"</td>");
-				$tr.append("<td>"+data.year+"</td>");
-				$(".table tbody").append($tr);				
-			});
-		})
-		.fail(function(err){
-			$(".table tr.empty td div").text("Error!!");
-		});
+	// Scroll to intro head
+	$("a.home").click(function(){
+		scrollDiiwaa("intro");
 	});
 
-	// Add new data
-	$("form").submit(function(event){
-		event.preventDefault();		
-		var $tr = $("<tr></tr>");
-		var rows = $(".table tbody tr");
-		var data = $(this).serializeArray();
-				
-		$.each(data, function(index, result){
-			$tr.append("<td>"+result.value+"</td>");
-		});
+	// Scroll to contact
+	$("a.contact").click(function(){
+		scrollDiiwaa("contact");
+	});
 
-		if(rows.length == 1 && rows.hasClass("empty")){
-			$tr.prepend("<td>"+(rows.length)+"</td>")
-			$(".table tbody").html($tr);	
-		}
-		else{
-			$tr.prepend("<td>"+(++rows.length)+"</td>")
-			$(".table tbody").append($tr);			
-		}
-	})
+	$("form#contactForm").submit(function(event){
+		event.preventDefault();
+		var data = $(this).serializeArray();
+		$('#myModal .modal-body').empty();
+		$.each(data, function(index, item){
+			var $p = $("<p></p>");
+			switch(item.name){
+				case "selectUrgency":
+						$p.append("Urgently: " + item.value);
+					break;	
+				case "InputMessage":
+						$p.append("Message: " + item.value);
+					break;
+				case "InputEmail":
+						$p.append("Email: " + item.value);
+					break;
+				case "InputName":
+						$p.append("Name: " + item.value);
+					break;
+			}
+			$('#myModal .modal-body').append($p);
+		});
+		$('#myModal').modal();
+	});
 });

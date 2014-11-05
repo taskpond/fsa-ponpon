@@ -4,7 +4,11 @@
 	<title>The Full-Stack Academy</title>
 	{% include "../shared/header.html" %}
 </head>
-<body>	
+<body>
+	{% include "../shared/navigation.html" %}
+
 	{% block content %}{% endblock %}
+	
+	{% include "../shared/footer.html" %}
 </body>
 </html>
