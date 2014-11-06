@@ -3,6 +3,10 @@ The Full-Stack Academy
 
 ### Assignment 1: Basic Calculation Program
 
+https://raw.githubusercontent.com/taskpond/fsa-ponpon/develop/public/assignment-1.gif
+
+![Assignment 1](https://raw.githubusercontent.com/taskpond/fsa-ponpon/develop/public/assignment-1.gif)
+
 - `git checkout feature/Assignment01`
 - Usage `node . --help` to show helper eg.
 	- Sum `node . -a 3 3` ==> `Result:  6`
@@ -18,15 +22,21 @@ The Full-Stack Academy
 
 This assignment will show how to use Hapi create route to load page
 
+![Assignment 2](https://raw.githubusercontent.com/taskpond/fsa-ponpon/develop/public/assignment-2.gif)
+
 - `git checkout feature/Assignment02`
 
 ### Assignment 3: jQuery
 
 This assignment use [Bower](http://bower.io/) to install [jQuery](http://jquery.com/) ans demonstrate $.ajax to fetch data from json file
 
+![Assignment 3](https://raw.githubusercontent.com/taskpond/fsa-ponpon/develop/public/assignment-3.gif)
+
 - `git checkout feature/Assignment03`
 
 ### Assignment 4: Bootstrap
+
+![Assignment 4](https://raw.githubusercontent.com/taskpond/fsa-ponpon/develop/public/assignment-4.gif)
 
 This assignment use [Bower](http://bower.io/) install [Bootstrap](http://getbootstrap.com/) and demonstrate root page intregated with [Bootstrap](http://getbootstrap.com/)
 
