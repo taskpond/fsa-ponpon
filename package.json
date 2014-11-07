@@ -18,6 +18,7 @@
   "homepage": "https://github.com/taskpond/fsa-assignments",
   "dependencies": {
     "commander": "^2.5.0",
+    "forever-monitor": "^1.5.1",
     "hapi": "^7.2.0",
     "node-xml2json": "^1.0.0",
     "require-directory": "^2.0.0",
