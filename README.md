@@ -3,8 +3,6 @@ The Full-Stack Academy
 
 ### Assignment 1: Basic Calculation Program
 
-https://raw.githubusercontent.com/taskpond/fsa-ponpon/develop/public/assignment-1.gif
-
 ![Assignment 1](https://raw.githubusercontent.com/taskpond/fsa-ponpon/develop/public/assignment-1.gif)
 
 - `git checkout feature/Assignment01`
@@ -41,3 +39,13 @@ This assignment use [Bower](http://bower.io/) to install [jQuery](http://jquery.
 This assignment use [Bower](http://bower.io/) install [Bootstrap](http://getbootstrap.com/) and demonstrate root page intregated with [Bootstrap](http://getbootstrap.com/)
 
 - `git checkout feature/Assignment04`
+
+### Assignment 5: Node.js file handling
+
+![Assignment 5](https://raw.githubusercontent.com/taskpond/fsa-ponpon/develop/public/assignment-5.gif)
+
+Create a command-line program that can be run as follows;
+node your-program.js -f input.xml -o output.json
+
+- `git checkout feature/Assignment05`
+- `node assignment5.js -f public/plantCatalog.xml -o public/plantCatalog.json`
