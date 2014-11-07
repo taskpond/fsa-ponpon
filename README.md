@@ -52,8 +52,6 @@ node your-program.js -f input.xml -o output.json
 
 ### Assignment 6: Linux
 
-![Assignment 5](https://raw.githubusercontent.com/taskpond/fsa-ponpon/develop/public/assignment-5.gif)
-
 Demonstrate serve website by setting virtual host on nginx in linux and set reverse-proxy to Hapi server on port 80
 
 - Open Bowser (chrome, firefox etc)
