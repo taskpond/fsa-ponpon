@@ -49,3 +49,12 @@ node your-program.js -f input.xml -o output.json
 
 - `git checkout feature/Assignment05`
 - `node assignment5.js -f public/plantCatalog.xml -o public/plantCatalog.json`
+
+### Assignment 6: Linux
+
+![Assignment 5](https://raw.githubusercontent.com/taskpond/fsa-ponpon/develop/public/assignment-5.gif)
+
+Demonstrate serve website by setting virtual host on nginx in linux and set reverse-proxy to Hapi server on port 80
+
+- Open Bowser (chrome, firefox etc)
+- Go to `172.18.5.75` to access Hapi server on port 80 (Ethernet website)
