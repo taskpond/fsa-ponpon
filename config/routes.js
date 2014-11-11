@@ -13,6 +13,26 @@ module.exports = [
   }, 
   {
     method: 'GET',
+    path: '/register',
+    config: controller.eventsController.index
+  },
+  {
+    method: 'POST',
+    path: '/register',
+    config: controller.eventsController.create
+  },
+  {
+    method: 'GET',
+    path: '/events',
+    config: controller.eventsController.list
+  },
+  {
+    method: 'GET',
+    path: '/events/{id}',
+    config: controller.eventsController.show
+  },
+  {
+    method: 'GET',
     path: '/images/{path*}',
     config: controller.assetsController.images
   },
