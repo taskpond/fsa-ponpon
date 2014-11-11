@@ -55,4 +55,13 @@ node your-program.js -f input.xml -o output.json
 Demonstrate serve website by setting virtual host on nginx in linux and set reverse-proxy to Hapi server on port 80
 
 - Open Bowser (chrome, firefox etc)
-- Go to `172.18.5.75` to access Hapi server on port 80 (Ethernet website)
+- Go to `172.18.5.130` to access Hapi server on port 80 (Ethernet website)
+
+### Assignment 7: Hapi + Joi + Mongoose
+
+Demonstrate server-side form validation using Joi and save the data in a Mongoose model.
+
+- Open Bowser (chrome, firefox etc)
+- Go to `172.18.5.130/register` to register new event
+- Go to `172.18.5.130/events` to show event list
+- Go to `172.18.5.130/events/{id}` to specific event
