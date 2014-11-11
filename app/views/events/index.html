@@ -1,0 +1,92 @@
+{% extends '../layouts/application.html' %}
+
+{% block content %}
+  <!-- Contact -->
+  <div class="content" id="contact">
+
+      <div class="container">
+
+				<div class="row">
+					<h3>{{desc}}</h3>
+				  <form role="form" action="/register" method="post" id="contactForm">
+				    <div class="col-lg-6">				    	
+							<div class="form-group">
+								<h5>Status</h5>
+								<label class="radio-inline">
+							    <input type="radio" name="status" id="status1" value="single" checked> Single
+								</label>
+								<label class="radio-inline">
+							    <input type="radio" name="status" id="status2" value="married"> Married
+							  </label>
+						  </div>
+
+						  <div class="form-group">
+						  	<h5>Skill(s)</h5>
+							  <label class="checkbox-inline">
+								  <input type="checkbox" name="skill" id="skill1" value="ruby-on-rails"> Ruby on Rails
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" name="skill" id="skill2" value="nodejs"> NodeJS
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" name="skill" id="skill3" value="php"> PHP
+								</label>
+								<label class="checkbox-inline">
+								  <input type="checkbox" name="skill" id="skill4" value="dotnet"> .NET
+								</label>
+							</div>
+
+							<div class="form-group">
+								<h5>Title</h5>
+						    <select class="form-control" name="title" id="selectUrgency">
+								  <option value="mr">Mr</option>
+								  <option value="mrs">Mrs</option>
+								  <option value="mrss">Mrss</option>
+								  <option value="ms">Ms</option>
+								</select>
+							</div>
+				      <div class="form-group">
+				        <label for="InputName">Your Name</label>
+				        <div class="input-group col-sm-12">
+				          <input type="text" class="form-control pull-right" name="InputName" id="InputName" placeholder="Enter Name" required>
+				        	<i class="glyphicon glyphicon-user form-control-feedback"></i>
+				        </div>
+				      </div>
+				      <div class="form-group">
+				        <label for="InputEmail">Your Email</label>
+				        <div class="input-group col-sm-12">
+				          <input type="email" class="form-control" id="InputEmail" name="InputEmail" placeholder="Enter Email" required  >
+				        	<i class="glyphicon glyphicon-envelope form-control-feedback"></i>
+				        </div>
+				      </div>
+				      <input type="submit" name="submit" id="submit" value="Register" class="btn btn-info pull-right">
+				    </div>
+				  </form>
+				  <hr class="featurette-divider hidden-lg">
+				  <div class="col-lg-5 col-md-push-1">
+				  	<h4>Description</h4>
+				  	<p>This is a meetup group for people with a passon for web developer and related technologies. This group was started with the intention of building a community of developers in Bangkok</p>
+				  </div>
+				</div>
+
+      </div>
+      <!-- /.container -->
+
+  </div>
+
+  <!-- Modal -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	        <h4 class="modal-title" id="myModalLabel">Contact Info</h4>
+	      </div>
+	      <div class="modal-body"></div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+{% endblock %}
