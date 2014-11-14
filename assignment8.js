@@ -3,37 +3,46 @@ var xml2json 	= require('node-xml2json'),
  		program 	= require('commander')
  		_ 				= require('lodash'),
  		log			  = require('bunyan').createLogger({name: "assignment8"})
- 		figlet 		= require('node-figlet');
+ 		figlet 		= require('node-figlet'),
+ 		exec 			= require('child_process').exec;
+
 program
 	.version('0.0.1')
-	.usage('--file input.xml --split xml_block --db dbname --table tablename \n         Example: node assignment8.js -f public/plantCatalog.xml -s plant -d assignment8 -t plant')
+	.usage('--file input.xml --split xml_block --db dbname --table tablename \n         Example: node assignment8.js -f public/plantCatalog.xml -s plant -d assignment8 -t plant -u root -p 1234 | bunyan')
 	.option('-f, --file [file]', 'input xml file')
 	.option('-s, --split [xml_block]', 'XML Block')
 	.option('-d, --db [database]', 'Database Name')
 	.option('-t, --table [table]', 'Table Name')
+	.option('-u, --username [root]', 'Database\'s username')
+	.option('-p, --password [1234]', 'Database\'s password')
 	.parse(process.argv);
 
-if((typeof program.file === 'string') && 
-	(typeof program.split === 'string') && 
+if((typeof program.file === 'string') &&
+	(typeof program.split === 'string') &&
 	(typeof program.db === 'string') &&
 	(typeof program.table === 'string'))
 {
-	var xml  			= program.file;
-	var block 		= program.split;
-	var dbname 		= program.db;
+	var xml  	  = program.file;
+	var block 	  = program.split;
+	var dbname 	  = program.db;
 	var tablename = program.table;
+	var dbusername= program.username;
+	var dbpassword= program.password;
 	var Promise   = require('bluebird');
-	var Sequelize = require('sequelize'), 
-			sequelize = new Sequelize(dbname, 'root', 'asdqwe123', {
+	var Sequelize = require('sequelize'),
+			sequelize = new Sequelize(dbname, dbusername, dbpassword, {
 	      dialect: "mysql",
 	      port:    3306
 	    });
+
+	// Create database
+	exec("mysql -u "+dbusername+" -p'"+dbpassword+"' -e 'CREATE DATABASE IF NOT EXISTS "+dbname+"'");
 
 	fs.readFile(xml, 'utf8', function(err, content){
 
 		if(err){
 			log.error(err);
-			return;			
+			return;
 		}
 
 		var json = xml2json.parser(content);
@@ -44,13 +53,13 @@ if((typeof program.file === 'string') &&
 				return;
 			}
 
-			var columns = [];			
+			var columns = [];
 			var fields = {};
 			var tableColumn = [];
 			_.each(item, function(plant, index){
 				var values  = _.values(plant).join('","');
 				tableColumn = _.keys(plant);
-				// Create bulk command from xml block				
+				// Create bulk command from xml block
 					var obj = {};
 				_.each(_.keys(plant), function (val, i) {
 					fields[val] = _.isEqual(typeof _.values(plant)[i], 'number') ? Sequelize.INTEGER : Sequelize.STRING(255);
@@ -60,8 +69,7 @@ if((typeof program.file === 'string') &&
 			});
 
 			var Assignment8 = ASS8.define(sequelize, tablename, fields);
-			ASS8.initDB(Assignment8, dbname);
-			ASS8.bulkCreate(Assignment8, columns, tableColumn);			
+			ASS8.bulkCreate(Assignment8, columns, tableColumn);
 		});
 
 	});
@@ -78,18 +86,14 @@ var ASS8 = {
 						engine: "MYISAM"
 					});
 	},
-	initDB: function(obj, dbname){		
-		var exec = require('child_process').exec;
+	initDB: function(obj){		
 		return obj.sync({force: true})
 		.catch(function(err){
-			if(_.isEqual(err.code, 'ER_BAD_DB_ERROR')){
-				log.info('create database "'+dbname+'" if not exists');
-				exec("mysql -u root -p'asdqwe123' -e 'CREATE DATABASE IF NOT EXISTS "+dbname+"'");
-			}
+			log.error(err);
 		});
 	},
 	bulkCreate: function(obj, columns, tableColumn){
-		
+
 		var self = this;
 		this.initDB(obj)
 		.then(function(){
@@ -102,9 +106,9 @@ var ASS8 = {
 			})
 			.catch(function(err){
 				log.error(err);
-			});			
+			});
 		})
-		.catch(function(err){					
+		.catch(function(err){
 			log.error(err);
 		});
 	},
@@ -112,8 +116,8 @@ var ASS8 = {
 		var AsciiTable = require('ascii-table');
 		var table = new AsciiTable('Assignment 8: XML to MySQL')
 				tableColumn.unshift("id");
-				table.setHeading(tableColumn);								 
-				_.each(data, function(value, index){					
+				table.setHeading(tableColumn);
+				_.each(data, function(value, index){
 					var values = [];
 					_.each(tableColumn, function(c){
 						if(value.dataValues[c]){
@@ -125,7 +129,7 @@ var ASS8 = {
 				});
 				console.log(table.toString())
 				figlet(columns.length + ' records inserted', function (ascii){
-				  console.log(ascii.toString());    
-				});				
+				  console.log(ascii.toString());
+				});
 	}
 }
