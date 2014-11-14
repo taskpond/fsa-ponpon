@@ -3,10 +3,12 @@ var xml2json 	= require('node-xml2json'),
  		program 	= require('commander')
  		_ 				= require('lodash'),
  		log			  = require('bunyan').createLogger({name: "assignment8"})
- 		figlet 		= require('node-figlet');
+ 		figlet 		= require('node-figlet'),
+ 		exec 			= require('child_process').exec;
+
 program
 	.version('0.0.1')
-	.usage('--file input.xml --split xml_block --db dbname --table tablename \n         Example: node assignment8.js -f public/plantCatalog.xml -s plant -d assignment8 -t plant')
+	.usage('--file input.xml --split xml_block --db dbname --table tablename \n         Example: node assignment8.js -f public/plantCatalog.xml -s plant -d assignment8 -t plant -u root -p 1234 | bunyan')
 	.option('-f, --file [file]', 'input xml file')
 	.option('-s, --split [xml_block]', 'XML Block')
 	.option('-d, --db [database]', 'Database Name')
@@ -32,6 +34,9 @@ if((typeof program.file === 'string') &&
 	      dialect: "mysql",
 	      port:    3306
 	    });
+
+	// Create database
+	exec("mysql -u "+dbusername+" -p'"+dbpassword+"' -e 'CREATE DATABASE IF NOT EXISTS "+dbname+"'");
 
 	fs.readFile(xml, 'utf8', function(err, content){
 
@@ -64,7 +69,6 @@ if((typeof program.file === 'string') &&
 			});
 
 			var Assignment8 = ASS8.define(sequelize, tablename, fields);
-			ASS8.initDB(Assignment8, dbname);
 			ASS8.bulkCreate(Assignment8, columns, tableColumn);
 		});
 
@@ -82,14 +86,10 @@ var ASS8 = {
 						engine: "MYISAM"
 					});
 	},
-	initDB: function(obj, dbname){
-		var exec = require('child_process').exec;
+	initDB: function(obj){		
 		return obj.sync({force: true})
 		.catch(function(err){
-			if(_.isEqual(err.code, 'ER_BAD_DB_ERROR')){
-				log.info('create database "'+dbname+'" if not exists');
-				exec("mysql -u "+dbusername+" -p'"+dbpassword+"' -e 'CREATE DATABASE IF NOT EXISTS "+dbname+"'");
-			}
+			log.error(err);
 		});
 	},
 	bulkCreate: function(obj, columns, tableColumn){
