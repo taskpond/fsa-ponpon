@@ -111,10 +111,17 @@ var ASS8 = {
 	render: function(data, columns, tableColumn){
 		var AsciiTable = require('ascii-table');
 		var table = new AsciiTable('Assignment 8: XML to MySQL')
-				tableColumn.unshift("");
+				tableColumn.unshift("id");
 				table.setHeading(tableColumn);								 
-				_.each(data, function(value, index){
-					table.addRow(++index, value.common, value.batanical, value.zone, value.light, value.price, value.availability);
+				_.each(data, function(value, index){					
+					var values = [];
+					_.each(tableColumn, function(c){
+						if(value.dataValues[c]){
+							values.push(value.dataValues[c]);
+						}
+					});
+					values.unshift(++index);
+					table.addRow(values);
 				});
 				console.log(table.toString())
 				figlet(columns.length + ' records inserted', function (ascii){
