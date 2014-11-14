@@ -68,9 +68,11 @@ Demonstrate server-side form validation using Joi and save the data in a Mongoos
 
 ### Assignment 8: XML to MySQL
 
+![Assignment 8](https://raw.githubusercontent.com/taskpond/fsa-ponpon/develop/public/assignment-8.gif)
+
 Create a command-line program that runs as follows;
 node your-program.js --file input.xml --split post --db test --table input_data
 
 - `git checkout feature/Assignment08`
 - open file `assignment8.js` at line 27 edit `'root', 'asdqwe123'` as your mysql username and password 
-- For example run this comand on terminal: `node assignment8.js -f public/plantCatalog.xml -s plant -d assignment8 -t plant`
+- For example run this comand on terminal: `node assignment8.js -f public/plantCatalog.xml -s plant -d assignment8 -t plant -u root -p 1234 | bunyan`
